@@ -16,7 +16,7 @@ format:
 
 website:
   title: "nbdev-cards"
-  site-url: "https://sepiabrown.github.io/nbdev-cards/"
+  site-url: "https://sepiabrown.github.io/nbdev_cards/"
   description: "Modelling GNN following LAIDD tutorial"
   twitter-card: true
   open-graph: true
