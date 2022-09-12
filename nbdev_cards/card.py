@@ -3,17 +3,17 @@
 # %% auto 0
 __all__ = ['suits', 'ranks', 'foo', 'Card']
 
-# %% ../00_card.ipynb 3
+# %% ../00_card.ipynb 4
 from fastcore.utils import *
 
-# %% ../00_card.ipynb 4
+# %% ../00_card.ipynb 5
 def foo(): pass
 
-# %% ../00_card.ipynb 5
+# %% ../00_card.ipynb 6
 suits = ["♣️","♦️","♥️","♠️"]
 ranks = [None,"A"] + [str(x) for x in range(2,11)] + ["J", "Q", "K"]
 
-# %% ../00_card.ipynb 16
+# %% ../00_card.ipynb 17
 class Card:
     "트럼프 카드"
     def __init__(self,
@@ -25,10 +25,10 @@ class Card:
     __repr__ = __str__
     # def __eq__(self, a:'Card'): return (self.suit,self.rank) == (a.suit,a.rank) 
 
-# %% ../00_card.ipynb 29
+# %% ../00_card.ipynb 30
 @patch
 def __eq__(self:Card, a:Card): return (self.suit,self.rank) == (a.suit,a.rank) 
 
-# %% ../00_card.ipynb 32
+# %% ../00_card.ipynb 33
 @patch
 def __lt__(self:Card, a:Card): return (self.suit,self.rank) < (a.suit,a.rank) 

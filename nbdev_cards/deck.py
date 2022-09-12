@@ -3,12 +3,13 @@
 # %% auto 0
 __all__ = ['Deck', 'draw_n']
 
-# %% ../01_deck.ipynb 3
+# %% ../01_deck.ipynb 5
 from .card import *
 from fastcore.utils import *
 import random
 
-# %% ../01_deck.ipynb 5
+
+# %% ../01_deck.ipynb 6
 class Deck:
     def __init__(self): self.cards = [Card(s, r) for s in range(4) for r in range(1, 14)]
     def __len__(self): return len(self.cards)
@@ -16,21 +17,21 @@ class Deck:
     def __contains__(self, card): return card in self.cards
     __repr__ = __str__
 
-# %% ../01_deck.ipynb 16
+# %% ../01_deck.ipynb 17
 @patch
 def pop(self:Deck,
         idx:int=-1): # 지우려는 카드의 인덱스. 기본값은 덱의 마지막 카드 인덱스
     "덱에서 인덱스에 해당되는 카드를 없애고 그 카드를 반환한다."
     return self.cards.pop(idx)
 
-# %% ../01_deck.ipynb 21
+# %% ../01_deck.ipynb 22
 @patch
 def remove(self:Deck,
            card:Card): # 없애려는 카드
     "덱에서 `card`를 없애고, 그 카드가 덱에 없었다면 예외를 발생시킨다."
     self.cards.remove(card)
 
-# %% ../01_deck.ipynb 24
+# %% ../01_deck.ipynb 25
 @patch
 def shuffle(self:Deck):
     "덱을 섞는다."
