@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "nbdev_cards",
+    "section": "",
+    "text": "Published : 2022-09-12 23:42:37 (KST)\n트럼프 카드 라이브러리에 대한 아이디어는 Think Python 2nd Edition by Allen B. Downey에서 가져옴."
+  },
+  {
+    "objectID": "index.html#설치",
+    "href": "index.html#설치",
+    "title": "nbdev_cards",
+    "section": "설치",
+    "text": "설치\n다음의 코드를 이용해 설치한다:\npip install card\n다른 방법:\nconda install -c sepiabrown card"
+  },
+  {
+    "objectID": "index.html#사용법",
+    "href": "index.html#사용법",
+    "title": "nbdev_cards",
+    "section": "사용법",
+    "text": "사용법\n이 라이브러리는 트럼프 카드들을 생성하고 비교할 수 있는 Card 클래스를 제공한다.\n\nCard(suit=1,rank=3)\n\n3♦️\n\n\n\nsuits\n\n['♣️', '♦️', '♥️', '♠️']\n\n\n\nassert Card(suit=1, rank=3)<Card(suit=2, rank=3)"
+  },
+  {
+    "objectID": "card.html",
+    "href": "card.html",
+    "title": "card – 기본 트럼트 카드",
+    "section": "",
+    "text": "Published : 2022-09-12 23:42:40 (KST)\nsource"
+  },
+  {
+    "objectID": "card.html#비교-연산자",
+    "href": "card.html#비교-연산자",
+    "title": "card – 기본 트럼트 카드",
+    "section": "비교 연산자",
+    "text": "비교 연산자\n같음, 적음, 큼 연산자는 등급과 문양에 대해 작동한다.\n\nsource\n\nCard.__eq__\n\n Card.__eq__ (a:__main__.Card)\n\nReturn self==value.\n\ntest_eq(Card(suit=1, rank=3),Card(suit=1, rank=3))\ntest_ne(Card(suit=2, rank=3),Card(suit=1, rank=3))\ntest_ne(Card(suit=1, rank=2),Card(suit=1, rank=3))\n\n\nassert Card(suit=1, rank=3)<Card(suit=2, rank=3)\n\n\n# 꼭 필요하지는 않은 듯. __lt__ 과 __gt__ 둘 중에 하나만 필요한 듯.\n#@patch\n#def __gt__(self:Card, a:Card): return (self.suit,self.rank) > (a.suit,a.rank)\n\n\nassert Card(suit=3, rank=3)>Card(suit=2, rank=3)"
+  },
+  {
+    "objectID": "deck.html",
+    "href": "deck.html",
+    "title": "deck",
+    "section": "",
+    "text": "from nbdev_cards.card import *\nfrom fastcore.utils import *\nimport random\n\n\nsource\n\nDeck\n\n Deck ()\n\nInitialize self. See help(type(self)) for accurate signature.\n덱 한 벌을 초기화하면, 모든 카드가 들어가 있다.\n\nDeck()\ndeck = Deck()\ndeck\n\n♣️A; ♣️2; ♣️3; ♣️4; ♣️5; ♣️6; ♣️7; ♣️8; ♣️9; ♣️10; ♣️J; ♣️Q; ♣️K; ♦️A; ♦️2; ♦️3; ♦️4; ♦️5; ♦️6; ♦️7; ♦️8; ♦️9; ♦️10; ♦️J; ♦️Q; ♦️K; ♥️A; ♥️2; ♥️3; ♥️4; ♥️5; ♥️6; ♥️7; ♥️8; ♥️9; ♥️10; ♥️J; ♥️Q; ♥️K; ♠️A; ♠️2; ♠️3; ♠️4; ♠️5; ♠️6; ♠️7; ♠️8; ♠️9; ♠️10; ♠️J; ♠️Q; ♠️K\n\n\n♣️A; ♣️2; ♣️3; ♣️4; ♣️5; ♣️6; ♣️7; ♣️8; ♣️9; ♣️10; ♣️J; ♣️Q; ♣️K; ♦️A; ♦️2; ♦️3; ♦️4; ♦️5; ♦️6; ♦️7; ♦️8; ♦️9; ♦️10; ♦️J; ♦️Q; ♦️K; ♥️A; ♥️2; ♥️3; ♥️4; ♥️5; ♥️6; ♥️7; ♥️8; ♥️9; ♥️10; ♥️J; ♥️Q; ♥️K; ♠️A; ♠️2; ♠️3; ♠️4; ♠️5; ♠️6; ♠️7; ♠️8; ♠️9; ♠️10; ♠️J; ♠️Q; ♠️K\n\n\n총 52개의 카드가 들어가 있어야 한다.\n\ntest_eq(len(deck), 52)\n\nCard를 포함하고 있는 소스코드에 #| export \\ from fastcore.utils import * 가 있어야 한다.\n\nCard??\n\n\nInit signature: Card(suit, rank)\nSource:        \nclass Card:\n    \"트럼프 카드\"\n    def __init__(self,\n                 suit, # `suits`에 들어가는 인덱스\n                 rank): # `ranks`에 들어가는 인덱스\n        self.suit, self.rank = suit, rank\n        #print(1/0)\n    def __str__(self): return f\"{suits[self.suit]}{ranks[self.rank]}\"\n    __repr__ = __str__\n    # def __eq__(self, a:'Card'): return (self.suit,self.rank) == (a.suit,a.rank)\nFile:           ~/Jupyter_Python/nbdev_cards/nbdev_cards/card.py\nType:           type\nSubclasses:     \n\n\n\n\n다시 상기해보면, 아래는 Card를 정의하기 위한 문양들이다:\n\nsuits\n\n['♣️', '♦️', '♥️', '♠️']\n\n\n클럽 에이스가 덱에 포함되어 있는지 확인할 수 있다:\n\nCard(1,1) in deck # __contains__ 함수가 정의되어 있어야한다.\n\nTrue\n\n\n\nsource\n\n\nDeck.pop\n\n Deck.pop (idx:int=-1)\n\n덱에서 인덱스에 해당되는 카드를 없애고 그 카드를 반환한다.\n\n\n\n\n\n\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nidx\nint\n-1\n지우려는 카드의 인덱스. 기본값은 덱의 마지막 카드 인덱스\n\n\n\n\ndeck.pop()\n\n♠️K\n\n\n\ndeck = Deck()\ntest_eq(deck.pop(), Card(3,13)) # K♠️\n\n이제 덱에는 51장의 카드가 남아있다.\n\ntest_eq(len(deck), 51)\n\n\nsource\n\n\nDeck.remove\n\n Deck.remove (card:nbdev_cards.card.Card)\n\n덱에서 card를 없애고, 그 카드가 덱에 없었다면 예외를 발생시킨다.\n\n\n\n\nType\nDetails\n\n\n\n\ncard\nCard\n없애려는 카드\n\n\n\n\ncard23 = Card(2,3)\ndeck.remove(card23)\nassert card23 not in deck\n\n\nCard(2,7)\nassert Card(2,7) not in deck\n\n♥️7\n\n\nAssertionError: \n\n\n\nsource\n\n\ndraw_n\n\n draw_n (n:int, replace:bool=True)\n\nn개의 카드를 추출. replace가 True일 경우 복원 추출.\n\n\n\n\nType\nDefault\nDetails\n\n\n\n\nn\nint\n\n뽑으려는 카드의 개수\n\n\nreplace\nbool\nTrue\n복원 추출 여부\n\n\n\n\nsource\n\n\nDeck.shuffle\n\n Deck.shuffle ()\n\n덱을 섞는다.\n\ndraw_n(13, replace=False)\n\n[♠️9, ♣️4, ♦️5, ♣️J, ♠️K, ♣️A, ♠️10, ♣️6, ♣️K, ♣️5, ♠️3, ♦️3, ♦️Q]"
+  }
+]

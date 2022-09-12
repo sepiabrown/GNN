@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="트럼프 카드 덱 구성하기">
+
+<title>nbdev-cards - deck</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="nbdev-cards - deck">
+<meta property="og:description" content="트럼프 카드 덱 구성하기">
+<meta property="og:site-name" content="nbdev-cards">
+<meta name="twitter:title" content="nbdev-cards - deck">
+<meta name="twitter:description" content="트럼프 카드 덱 구성하기">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">nbdev-cards</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sepiabrown/nbdev_cards/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">deck</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">nbdev_cards</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./card.html" class="sidebar-item-text sidebar-link">card – 기본 트럼트 카드</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./deck.html" class="sidebar-item-text sidebar-link active">deck</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#deck" id="toc-deck" class="nav-link active" data-scroll-target="#deck">Deck</a></li>
+  <li><a href="#deck.pop" id="toc-deck.pop" class="nav-link" data-scroll-target="#deck.pop">Deck.pop</a></li>
+  <li><a href="#deck.remove" id="toc-deck.remove" class="nav-link" data-scroll-target="#deck.remove">Deck.remove</a></li>
+  <li><a href="#draw_n" id="toc-draw_n" class="nav-link" data-scroll-target="#draw_n">draw_n</a></li>
+  <li><a href="#deck.shuffle" id="toc-deck.shuffle" class="nav-link" data-scroll-target="#deck.shuffle">Deck.shuffle</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/sepiabrown/nbdev_cards/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">deck</h1>
+</div>
+
+<div>
+  <div class="description">
+    트럼프 카드 덱 구성하기
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<p>Published : 2022-09-12 23:42:40 (KST)</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> nbdev_cards.card <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastcore.utils <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/sepiabrown/nbdev_cards/blob/main/nbdev_cards/deck.py#L13" target="_blank" style="float:right; font-size:smaller">source</a></p>
+<section id="deck" class="level3">
+<h3 class="anchored" data-anchor-id="deck">Deck</h3>
+<blockquote class="blockquote">
+<pre><code> Deck ()</code></pre>
+</blockquote>
+<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<p>덱 한 벌을 초기화하면, 모든 카드가 들어가 있다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Deck()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>deck <span class="op">=</span> Deck()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>deck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>♣️A; ♣️2; ♣️3; ♣️4; ♣️5; ♣️6; ♣️7; ♣️8; ♣️9; ♣️10; ♣️J; ♣️Q; ♣️K; ♦️A; ♦️2; ♦️3; ♦️4; ♦️5; ♦️6; ♦️7; ♦️8; ♦️9; ♦️10; ♦️J; ♦️Q; ♦️K; ♥️A; ♥️2; ♥️3; ♥️4; ♥️5; ♥️6; ♥️7; ♥️8; ♥️9; ♥️10; ♥️J; ♥️Q; ♥️K; ♠️A; ♠️2; ♠️3; ♠️4; ♠️5; ♠️6; ♠️7; ♠️8; ♠️9; ♠️10; ♠️J; ♠️Q; ♠️K</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>♣️A; ♣️2; ♣️3; ♣️4; ♣️5; ♣️6; ♣️7; ♣️8; ♣️9; ♣️10; ♣️J; ♣️Q; ♣️K; ♦️A; ♦️2; ♦️3; ♦️4; ♦️5; ♦️6; ♦️7; ♦️8; ♦️9; ♦️10; ♦️J; ♦️Q; ♦️K; ♥️A; ♥️2; ♥️3; ♥️4; ♥️5; ♥️6; ♥️7; ♥️8; ♥️9; ♥️10; ♥️J; ♥️Q; ♥️K; ♠️A; ♠️2; ♠️3; ♠️4; ♠️5; ♠️6; ♠️7; ♠️8; ♠️9; ♠️10; ♠️J; ♠️Q; ♠️K</code></pre>
+</div>
+</div>
+<p>총 52개의 카드가 들어가 있어야 한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">len</span>(deck), <span class="dv">52</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="https://sepiabrown.github.io/nbdev_cards/card.html#card"><code>Card</code></a>를 포함하고 있는 소스코드에 <code>#| export \ from fastcore.utils import *</code> 가 있어야 한다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Card??</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">Init signature:</span> Card<span class="ansi-blue-fg">(</span>suit<span class="ansi-blue-fg">,</span> rank<span class="ansi-blue-fg">)</span>
+<span class="ansi-red-fg">Source:</span>        
+<span class="ansi-green-fg">class</span> Card<span class="ansi-blue-fg">:</span>
+    <span class="ansi-blue-fg">"트럼프 카드"</span>
+    <span class="ansi-green-fg">def</span> __init__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span>
+                 suit<span class="ansi-blue-fg">,</span> <span class="ansi-red-fg"># `suits`에 들어가는 인덱스</span>
+                 rank<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-red-fg"># `ranks`에 들어가는 인덱스</span>
+        self<span class="ansi-blue-fg">.</span>suit<span class="ansi-blue-fg">,</span> self<span class="ansi-blue-fg">.</span>rank <span class="ansi-blue-fg">=</span> suit<span class="ansi-blue-fg">,</span> rank
+        <span class="ansi-red-fg">#print(1/0)</span>
+    <span class="ansi-green-fg">def</span> __str__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f"{suits[self.suit]}{ranks[self.rank]}"</span>
+    __repr__ <span class="ansi-blue-fg">=</span> __str__
+    <span class="ansi-red-fg"># def __eq__(self, a:'Card'): return (self.suit,self.rank) == (a.suit,a.rank)</span>
+<span class="ansi-red-fg">File:</span>           ~/Jupyter_Python/nbdev_cards/nbdev_cards/card.py
+<span class="ansi-red-fg">Type:</span>           type
+<span class="ansi-red-fg">Subclasses:</span>     
+</pre>
+</div>
+</div>
+</div>
+<p>다시 상기해보면, 아래는 <a href="https://sepiabrown.github.io/nbdev_cards/card.html#card"><code>Card</code></a>를 정의하기 위한 문양들이다:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>suits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>['♣️', '♦️', '♥️', '♠️']</code></pre>
+</div>
+</div>
+<p>클럽 에이스가 덱에 포함되어 있는지 확인할 수 있다:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Card(<span class="dv">1</span>,<span class="dv">1</span>) <span class="kw">in</span> deck <span class="co"># __contains__ 함수가 정의되어 있어야한다.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/sepiabrown/nbdev_cards/blob/main/nbdev_cards/deck.py#L22" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="deck.pop" class="level3">
+<h3 class="anchored" data-anchor-id="deck.pop">Deck.pop</h3>
+<blockquote class="blockquote">
+<pre><code> Deck.pop (idx:int=-1)</code></pre>
+</blockquote>
+<p>덱에서 인덱스에 해당되는 카드를 없애고 그 카드를 반환한다.</p>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>idx</td>
+<td>int</td>
+<td>-1</td>
+<td>지우려는 카드의 인덱스. 기본값은 덱의 마지막 카드 인덱스</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>deck.pop()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>♠️K</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>deck <span class="op">=</span> Deck()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>test_eq(deck.pop(), Card(<span class="dv">3</span>,<span class="dv">13</span>)) <span class="co"># K♠️</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>이제 덱에는 51장의 카드가 남아있다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>test_eq(<span class="bu">len</span>(deck), <span class="dv">51</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<p><a href="https://github.com/sepiabrown/nbdev_cards/blob/main/nbdev_cards/deck.py#L29" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="deck.remove" class="level3">
+<h3 class="anchored" data-anchor-id="deck.remove">Deck.remove</h3>
+<blockquote class="blockquote">
+<pre><code> Deck.remove (card:nbdev_cards.card.Card)</code></pre>
+</blockquote>
+<p>덱에서 <code>card</code>를 없애고, 그 카드가 덱에 없었다면 예외를 발생시킨다.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>card</td>
+<td>Card</td>
+<td>없애려는 카드</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>card23 <span class="op">=</span> Card(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>deck.remove(card23)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> card23 <span class="kw">not</span> <span class="kw">in</span> deck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Card(<span class="dv">2</span>,<span class="dv">7</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> Card(<span class="dv">2</span>,<span class="dv">7</span>) <span class="kw">not</span> <span class="kw">in</span> deck</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>♥️7</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<pre><code>AssertionError: </code></pre>
+</div>
+</div>
+<hr>
+<p><a href="https://github.com/sepiabrown/nbdev_cards/blob/main/nbdev_cards/deck.py#L40" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="draw_n" class="level3">
+<h3 class="anchored" data-anchor-id="draw_n">draw_n</h3>
+<blockquote class="blockquote">
+<pre><code> draw_n (n:int, replace:bool=True)</code></pre>
+</blockquote>
+<p><code>n</code>개의 카드를 추출. <code>replace</code>가 <code>True</code>일 경우 복원 추출.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Default</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>n</td>
+<td>int</td>
+<td></td>
+<td>뽑으려는 카드의 개수</td>
+</tr>
+<tr class="even">
+<td>replace</td>
+<td>bool</td>
+<td>True</td>
+<td>복원 추출 여부</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><a href="https://github.com/sepiabrown/nbdev_cards/blob/main/nbdev_cards/deck.py#L36" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
+<section id="deck.shuffle" class="level3">
+<h3 class="anchored" data-anchor-id="deck.shuffle">Deck.shuffle</h3>
+<blockquote class="blockquote">
+<pre><code> Deck.shuffle ()</code></pre>
+</blockquote>
+<p>덱을 섞는다.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>draw_n(<span class="dv">13</span>, replace<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>[♠️9, ♣️4, ♦️5, ♣️J, ♠️K, ♣️A, ♠️10, ♣️6, ♣️K, ♣️5, ♠️3, ♦️3, ♦️Q]</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
